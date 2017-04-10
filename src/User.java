@@ -1,6 +1,6 @@
 import java.util.HashMap;
 /**
- * The User class represent each user.
+ * The User class represents an user.
  * @author Eddie
  *
  */
