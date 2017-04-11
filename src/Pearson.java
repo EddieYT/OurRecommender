@@ -14,11 +14,7 @@ public class Pearson implements RelationFormula{
 			value3 = value3 + (b.getRating(m) - b.getAverage())*(b.getRating(m) - b.getAverage());
 		}
 		double similarity = value1/(Math.sqrt(value2)*Math.sqrt(value3));
-		return similarity;
-		
-		
-		
-		
+		return similarity;	
 	}
 	
 	public ArrayList<Movie> and (User a, User b) {

@@ -8,27 +8,6 @@ public class User {
 	private int id;
 	private HashMap<Movie, Double> ratings;
 	
-<<<<<<< HEAD
-	public int getId() {
-		return id;
-	}
-	
-	public HashMap<Movie, Double> getRatings() {
-		return ratings;
-	}
-	
-	
-	public double getAverage() {
-		double total = 0;
-		for (double rating : ratings.values()) {
-			total = total + rating;
-		}
-		return total/ratings.size();
-	}
-	
-	public double getRating(Movie m) {
-		return ratings.get(m);
-=======
 	/**
 	 * Constructor
 	 * @param id the user's id
@@ -53,6 +32,43 @@ public class User {
 	 */
 	public void setRating(Movie m, double rating) {
 		ratings.put(m, rating);
->>>>>>> cc6dab7ce474da0afc0590b743599ff934e81b76
 	}
+	
+	/**
+	 * Gets the user's id
+	 * @return id
+	 */
+	public int getId() {
+		return id;
+	}
+	
+	/**
+	 * Gets all ratings from a user.
+	 * @return a HashMap maps movie to rating
+	 */
+	public HashMap<Movie, Double> getRatings() {
+		return ratings;
+	}
+	
+	/**
+	 * Gets a specified movie's rating from a user
+	 * @param m
+	 * @return the number of rating
+	 */
+	public double getRating(Movie m) {
+		return ratings.get(m);
+	}
+	
+	/**
+	 * Gets the overall average of all ratings from a user
+	 * @return the average of all ratings
+	 */
+	public double getAverage() {
+		double total = 0;
+		for (double rating : ratings.values()) {
+			total = total + rating;
+		}
+		return total/ratings.size();
+	}
+	
 }
