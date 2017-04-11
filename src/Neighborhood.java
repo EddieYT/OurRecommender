@@ -28,7 +28,7 @@ public class Neighborhood{
 	}
 	
 	
-	public ArrayList<User> findNbs(User u, int threshold) {
+	public ArrayList<User> findNbs(User u, Movie movie, int threshold) {
 		HashMap<User, Double> allS = getAllSimilarity(u);
 		PriorityQueue<Map.Entry<User, Double>> nbs = new PriorityQueue<>(threshold, new Comparator<Map.Entry<User, Double>>() {
 			public int compare(Map.Entry<User, Double> A, Map.Entry<User, Double> B) {
@@ -43,6 +43,8 @@ public class Neighborhood{
 		});
 		int count = 0;
 		for (Map.Entry<User, Double> m : allS.entrySet()) {
+			// This neighbor hasn't watched this movie, skip it.
+			if (!m.getKey().getAllRatings().containsKey(movie)) continue;
 			if (count < threshold) {
 				nbs.add(m);
 				count++;

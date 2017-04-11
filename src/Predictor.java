@@ -12,9 +12,17 @@ public class Predictor {
 	}
 	
 	public double predict(User u, Movie i) {
-		ArrayList<User> nbs = n.findNbs(u, 50);
+		// The user has watched the movie, return the review directly
+		if (u.getAllRatings().containsKey(i)) {
+			return u.getRating(i);
+		}
+		ArrayList<User> nbs = n.findNbs(u, i, 50);
 		double value1 = 0;
 		for (User user : nbs) {
+			if (!user.getAllRatings().containsKey(i)) {
+				System.out.println("Here");
+				continue;
+			}
 			value1 = value1 + p.runSimilarity(user, u)*(user.getRating(i)-user.getAverage());
 		}
 		double value2 = 0;

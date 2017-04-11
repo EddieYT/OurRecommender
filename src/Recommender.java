@@ -41,6 +41,8 @@ public class Recommender {
 		});
 		int count = 0;
 		for (Map.Entry<Movie, Double> m : allPre.entrySet()) {
+			// The user has already watched the movie, skip it.
+			if (u.getAllRatings().containsKey(m.getKey())) continue;
 			if (count < range) {
 				topRating.add(m);
 				count++;
