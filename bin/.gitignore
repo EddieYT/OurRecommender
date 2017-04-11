@@ -1,6 +1,16 @@
+<<<<<<< HEAD
 /Movie.class
 /ReadFile.class
 /User.class
 /Neighborhood.class
 /Pearson.class
 /RelationFormula.class
+=======
+/Neighborhood.class
+/Pearson.class
+/RelationFormula.class
+/Neighborhood$1.class
+/Predictor.class
+/Recommender.class
+/Recommender$1.class
+>>>>>>> b92f72e86b473989e2262dfce394d92d89373332
