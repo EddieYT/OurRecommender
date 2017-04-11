@@ -8,7 +8,7 @@ public class User {
 	private int id;
 	private HashMap<Movie, Double> ratings;
 	
-<<<<<<< HEAD
+
 	public int getId() {
 		return id;
 	}
@@ -28,7 +28,8 @@ public class User {
 	
 	public double getRating(Movie m) {
 		return ratings.get(m);
-=======
+	}
+
 	/**
 	 * Constructor
 	 * @param id the user's id
@@ -53,6 +54,6 @@ public class User {
 	 */
 	public void setRating(Movie m, double rating) {
 		ratings.put(m, rating);
->>>>>>> cc6dab7ce474da0afc0590b743599ff934e81b76
+
 	}
 }
