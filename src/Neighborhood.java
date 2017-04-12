@@ -6,7 +6,6 @@ import java.util.PriorityQueue;
 
 public class Neighborhood{
 	
-	//PriorityQueue<Map.Entry<User, >>
 	Pearson p;
 	ReadFile rf;
 	
@@ -16,6 +15,7 @@ public class Neighborhood{
 	}
 	
 	public HashMap<User, Double> getAllSimilarity(User a) {
+		if (!a.getAllSimilarity().isEmpty()) return a.getAllSimilarity();
 		HashMap<Integer, User> allUsers = rf.getAllUsers();
 		HashMap<User, Double> similarity = new HashMap<>();
 		for (User u : allUsers.values()) {
@@ -24,6 +24,7 @@ public class Neighborhood{
 				similarity.put(u, s);
 			}
 		}
+		a.setAllSimilarity(similarity);
 		return similarity;
 	}
 	

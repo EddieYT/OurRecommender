@@ -8,6 +8,7 @@ public class User {
 	private int id;
 	private double avg;
 	private HashMap<Movie, Double> ratings;
+	private HashMap<User, Double> similarity;
 	
 	/**
 	 * Constructor
@@ -17,6 +18,7 @@ public class User {
 		this.id = id;
 		avg = -1;
 		ratings = new HashMap<Movie, Double>();
+		similarity = new HashMap<User, Double>();
 	}
 	
 	/**
@@ -79,6 +81,18 @@ public class User {
 	public double getAverage() {
 		if (avg < 0) this.calAvg();
 		return this.avg;
+	}
+	
+	public void setAllSimilarity(HashMap<User, Double> a) {
+		this.similarity = a;
+	}
+	
+	public double getSimilarity(User u) {
+		return this.similarity.get(u);
+	}
+	
+	public HashMap<User, Double> getAllSimilarity() {
+		return this.similarity;
 	}
 	
 }

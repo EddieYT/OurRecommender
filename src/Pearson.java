@@ -3,6 +3,8 @@ import java.util.HashMap;
 
 public class Pearson implements RelationFormula{
 	
+	// Store the similarity for future use
+	
 	public double runSimilarity (User a, User b) {
 		ArrayList<Movie> both = and (a, b);
 		double value1 = 0;

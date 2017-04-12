@@ -12,18 +12,14 @@ public class Predictor {
 	}
 	
 	public double predict(User u, Movie i) {
-		// The user has watched the movie, return the review directly
-		if (u.getAllRatings().containsKey(i)) {
-			return u.getRating(i);
-		}
 		ArrayList<User> nbs = n.findNbs(u, i, 20);
 		double value1 = 0;
 		for (User user : nbs) {
-			value1 = value1 + p.runSimilarity(user, u)*(user.getRating(i)-user.getAverage());
+			value1 = value1 + u.getSimilarity(user)*(user.getRating(i)-user.getAverage());
 		}
 		double value2 = 0;
 		for (User user : nbs) {
-			value2 = value2 + Math.abs(p.runSimilarity(user, u));
+			value2 = value2 + Math.abs(u.getSimilarity(user));
 		}
 		double res = u.getAverage() + value1/value2;
 		return res;

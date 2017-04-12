@@ -15,18 +15,17 @@ public class Recommender {
 		
 	}
 	
-	
 	public HashMap<Movie, Double> getAllPre(User a) {
 		HashMap<Integer, Movie> allMovies = rf.getAllMovies();
 		HashMap<Movie, Double> predictRating = new HashMap<>();
 		for (Movie m : allMovies.values()) {
 			double predictR = p.predict(a, m);
-			System.out.println(predictR + " " + m.getID());
 			predictRating.put(m, predictR);
 		}
 		return predictRating;
 	}
 	
+	// It will take about 4 min to run this one.
 	public ArrayList<Movie> recommend(User u, int range) {
 		HashMap<Movie, Double> allPre = getAllPre(u);
 		PriorityQueue<Map.Entry<Movie, Double>> topRating = new PriorityQueue<>(range, new Comparator<Map.Entry<Movie, Double>>() {
@@ -44,7 +43,6 @@ public class Recommender {
 		for (Map.Entry<Movie, Double> m : allPre.entrySet()) {
 			// The user has already watched the movie, skip it.
 			if (u.getAllRatings().containsKey(m.getKey())) continue;
-			System.out.println(m.getValue());
 			if (count < range) {
 				topRating.add(m);
 				count++;
