@@ -18,7 +18,7 @@ public class Main {
 			System.out.print("Select a question you'd like know(a or b/ q for quit): \n"
 					+ "a: Predict a user's preference of a movie\n"
 					+ "b: Predict a movie list for a user according to it's preference\n");
-			String choice = in.nextLine();
+			String choice = in.next();
 			if (choice.equals("q")) {
 				System.out.print("Exit Recommender.");
 				break;

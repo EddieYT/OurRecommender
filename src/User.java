@@ -6,6 +6,7 @@ import java.util.HashMap;
  */
 public class User {
 	private int id;
+	private double avg;
 	private HashMap<Movie, Double> ratings;
 	
 	/**
@@ -14,6 +15,7 @@ public class User {
 	 */
 	public User (int id) {
 		this.id = id;
+		avg = -1;
 		ratings = new HashMap<Movie, Double>();
 	}
 	
@@ -60,15 +62,23 @@ public class User {
 	}
 	
 	/**
-	 * Gets the overall average of all ratings from a user
-	 * @return the average of all ratings
+	 * Calculates the overall rating average for this user.
 	 */
-	public double getAverage() {
+	private void calAvg() {
 		double total = 0;
 		for (double rating : ratings.values()) {
 			total = total + rating;
 		}
-		return total/ratings.size();
+		this.avg = total/ratings.size();
+	}
+	
+	/**
+	 * Gets the overall average of all ratings from a user
+	 * @return the average of all ratings
+	 */
+	public double getAverage() {
+		if (avg < 0) this.calAvg();
+		return this.avg;
 	}
 	
 }

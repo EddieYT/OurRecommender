@@ -16,13 +16,9 @@ public class Predictor {
 		if (u.getAllRatings().containsKey(i)) {
 			return u.getRating(i);
 		}
-		ArrayList<User> nbs = n.findNbs(u, i, 50);
+		ArrayList<User> nbs = n.findNbs(u, i, 20);
 		double value1 = 0;
 		for (User user : nbs) {
-			if (!user.getAllRatings().containsKey(i)) {
-				System.out.println("Here");
-				continue;
-			}
 			value1 = value1 + p.runSimilarity(user, u)*(user.getRating(i)-user.getAverage());
 		}
 		double value2 = 0;

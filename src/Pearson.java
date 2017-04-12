@@ -10,9 +10,11 @@ public class Pearson implements RelationFormula{
 		double value3 = 0;
 		for (Movie m : both) {
 			value1 = value1 + ((a.getRating(m) - a.getAverage())*(b.getRating(m) - b.getAverage()));
-			value2 = value2 + (a.getRating(m) - a.getAverage())*(a.getRating(m) - a.getAverage());
-			value3 = value3 + (b.getRating(m) - b.getAverage())*(b.getRating(m) - b.getAverage());
+			value2 = value2 + (a.getRating(m) - a.getAverage()) * (a.getRating(m) - a.getAverage());
+			value3 = value3 + (b.getRating(m) - b.getAverage()) * (b.getRating(m) - b.getAverage());
 		}
+		// Once the denominator becomes 0, return 0 for similarity
+		if (value2 == 0 || value3 == 0) return 0;
 		double similarity = value1/(Math.sqrt(value2)*Math.sqrt(value3));
 		return similarity;	
 	}

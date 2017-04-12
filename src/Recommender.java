@@ -21,6 +21,7 @@ public class Recommender {
 		HashMap<Movie, Double> predictRating = new HashMap<>();
 		for (Movie m : allMovies.values()) {
 			double predictR = p.predict(a, m);
+			System.out.println(predictR + " " + m.getID());
 			predictRating.put(m, predictR);
 		}
 		return predictRating;
@@ -43,6 +44,7 @@ public class Recommender {
 		for (Map.Entry<Movie, Double> m : allPre.entrySet()) {
 			// The user has already watched the movie, skip it.
 			if (u.getAllRatings().containsKey(m.getKey())) continue;
+			System.out.println(m.getValue());
 			if (count < range) {
 				topRating.add(m);
 				count++;
