@@ -23,6 +23,7 @@ public class Main {
 		Recommender re = new Recommender(p, rf);
 		
 		while (true) {
+
 			System.out.print("Select a question you'd like know(a or b/ q for quit): \n"
 					+ "a: Predict a user's preference of a movie\n"
 					+ "b: Predict a movie list for a user according to it's preference\n");
@@ -31,41 +32,47 @@ public class Main {
 				System.out.print("Exit Recommender.");
 				break;
 			} else if (choice.equals("a")) {
-				System.out.println("Please enter a user id: ");
-				int userID = in.nextInt();
-				System.out.println("Please enter a movie id: ");
-				int movieID = in.nextInt();
-				HashMap<Integer, User> allUsers = rf.getAllUsers();
-				HashMap<Integer, Movie> allMovies = rf.getAllMovies();
-				User u = allUsers.get(userID);
-				Movie m = allMovies.get(movieID);
-				if (m == null) { 
-					System.out.println("The movie doesn't exist");
-					continue;
+				try {
+					System.out.println("Please enter a user id: ");
+					int userID = Integer.parseInt(in.next());
+					System.out.println("Please enter a movie id: ");
+					int movieID = Integer.parseInt(in.next());
+					HashMap<Integer, User> allUsers = rf.getAllUsers();
+					HashMap<Integer, Movie> allMovies = rf.getAllMovies();
+					User u = allUsers.get(userID);
+					Movie m = allMovies.get(movieID);
+					if (m == null) { 
+						System.out.println("The movie doesn't exist");
+						continue;
+					}
+					System.out.println(p.predict(u, m));
+				} catch (Exception e) {
+					System.out.println("Please input a number!");
 				}
-				System.out.println(p.predict(u, m));
-				
 			} else if (choice.equals("b")) {
-				System.out.println("Please enter a user id: ");
-				int userID = in.nextInt();
-				System.out.println("Please enter a range for ranking of preference: ");
-				int range = in.nextInt();
-				User u = rf.getAllUsers().get(userID);
-				if (u == null) {
-					System.out.println("This user doesnt exist");
-					continue;
+				try {
+					System.out.println("Please enter a user id: ");
+					int userID = Integer.parseInt(in.next());
+					System.out.println("Please enter a range for ranking of preference: ");
+					int range = Integer.parseInt(in.next());
+					User u = rf.getAllUsers().get(userID);
+					if (u == null) {
+						System.out.println("This user doesnt exist");
+					}
+					ArrayList<Movie> topMovie = re.recommend(u, range);
+					System.out.println("We recommend these movies for user " + userID);
+					int rank = topMovie.size();
+					for (Movie m: topMovie) {
+						System.out.println("Top " + rank + ": " + m.getID());
+						rank--;
+					}
+				} catch (Exception e) {
+					System.out.println("Please input a number!");
 				}
-				ArrayList<Movie> topMovie = re.recommend(u, range);
-				System.out.println("We recommend these movies for user " + userID);
-				int rank = 1;
-				for (Movie m: topMovie) {
-					System.out.println("Top " + rank + ": " + m.getID());
-					rank++;
-				}
+				
 			} else {
-				continue;
+				System.out.println("Your input format is not correct, please input again!");
 			}
 		}		
 	}
-
 }

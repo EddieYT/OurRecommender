@@ -64,7 +64,7 @@ public class User {
 	}
 	
 	/**
-	 * Calculates the overall rating average for this user.
+	 * Calculates the overall rating average for this user
 	 */
 	private void calAvg() {
 		double total = 0;
@@ -83,14 +83,27 @@ public class User {
 		return this.avg;
 	}
 	
+	/**
+	 * This method set the similarity between this user and other users
+	 * @param a
+	 */
 	public void setAllSimilarity(HashMap<User, Double> a) {
 		this.similarity = a;
 	}
 	
+	/**
+	 * This method will return the similarity between this user and user u
+	 * @param u
+	 * @return
+	 */
 	public double getSimilarity(User u) {
 		return this.similarity.get(u);
 	}
 	
+	/**
+	 * This method will return the similarity between user a and other users
+	 * @return all similarity
+	 */
 	public HashMap<User, Double> getAllSimilarity() {
 		return this.similarity;
 	}

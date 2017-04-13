@@ -40,7 +40,6 @@ public class Recommender {
 		return predictRating;
 	}
 	
-	// It will take about 4 min to run this one.
 	/**
 	 * The method recommends a list of movies to a user
 	 * @param u
@@ -62,7 +61,6 @@ public class Recommender {
 		});
 		int count = 0;
 		for (Map.Entry<Movie, Double> m : allPre.entrySet()) {
-			// The user has already watched the movie, skip it.
 			if (u.getAllRatings().containsKey(m.getKey())) continue;
 			if (count < range) {
 				topRating.add(m);

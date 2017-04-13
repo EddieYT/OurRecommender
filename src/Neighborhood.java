@@ -33,13 +33,7 @@ public class Neighborhood{
 		HashMap<User, Double> similarity = new HashMap<>();
 		for (User u : allUsers.values()) {
 			if (u != a) {
-	
 				double s = p.runSimilarity(u, a);
-				
-				if (u.getId() == 71 || u.getId() == 172 || u.getId() == 53192 || u.getId() ==25676) {
-					System.out.println( u.getId() + " similarity " + s);
-				}
-				
 				similarity.put(u, s);
 			}
 		}
@@ -69,7 +63,6 @@ public class Neighborhood{
 		});
 		int count = 0;
 		for (Map.Entry<User, Double> m : allS.entrySet()) {
-			// This neighbor hasn't watched this movie, skip it.
 			if (!m.getKey().getAllRatings().containsKey(movie)) continue;
 			if (count < threshold) {
 				nbs.add(m);
@@ -84,10 +77,6 @@ public class Neighborhood{
 		ArrayList<User> res = new ArrayList<User>();
 		while (!nbs.isEmpty()) {
 			res.add(nbs.poll().getKey());
-			
-		}
-		for (User j : res) {
-			System.out.println(j.getId());
 		}
 		return res;
 	}

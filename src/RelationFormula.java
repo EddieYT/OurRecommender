@@ -11,7 +11,7 @@ public interface RelationFormula {
 	 * This is an abstract method for counting the similarity between two users.
 	 * @param a
 	 * @param b
-	 * @return
+	 * @return the similarity
 	 */
 	public abstract double runSimilarity(User a, User b);
 	
