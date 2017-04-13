@@ -3,9 +3,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * The class will take in a data file.
+ * The class can predict the user's preference for a movie.
+ * The class can recommend a list of movies to a user.
+ * @author Eddie
+ *
+ */
 public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException {
+		
 		Scanner in = new Scanner(System.in);
 		System.out.println("Please enter the filename: ");
 		String filename = in.nextLine();

@@ -1,16 +1,30 @@
 import java.util.ArrayList;
-
+/**
+ * This class will predict a user's preference for a movie
+ * @author luona
+ *
+ */
 public class Predictor {
 	
 	Neighborhood n;
 	Pearson p;
 	
+	/**
+	 * The constructor initializes a Predictor object.
+	 * @param n
+	 */
 	public Predictor(Neighborhood n) {
 		this.n = n;
 		p = new Pearson();
 		
 	}
 	
+	/**
+	 * The method predicts a user's preference for a movie
+	 * @param u
+	 * @param i
+	 * @return
+	 */
 	public double predict(User u, Movie i) {
 		ArrayList<User> nbs = n.findNbs(u, i, 20);
 		double value1 = 0;

@@ -4,17 +4,32 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
 
+/**
+ * The class will recommend a list of movies to a user 
+ * @author luona
+ *
+ */
 public class Recommender {
 	
 	Predictor p;
 	ReadFile rf;
 	
+	/**
+	 * The constructor initializes a movie object
+	 * @param p
+	 * @param rf
+	 */
 	public Recommender(Predictor p, ReadFile rf) {
 		this.p = p;
 		this.rf = rf;
 		
 	}
 	
+	/**
+	 * The method computes the user's preference for all movies.
+	 * @param a
+	 * @return a HashMap contains user's preference for all movies
+	 */
 	public HashMap<Movie, Double> getAllPre(User a) {
 		HashMap<Integer, Movie> allMovies = rf.getAllMovies();
 		HashMap<Movie, Double> predictRating = new HashMap<>();
@@ -26,6 +41,12 @@ public class Recommender {
 	}
 	
 	// It will take about 4 min to run this one.
+	/**
+	 * The method recommends a list of movies to a user
+	 * @param u
+	 * @param range
+	 * @return a list of movies
+	 */
 	public ArrayList<Movie> recommend(User u, int range) {
 		HashMap<Movie, Double> allPre = getAllPre(u);
 		PriorityQueue<Map.Entry<Movie, Double>> topRating = new PriorityQueue<>(range, new Comparator<Map.Entry<Movie, Double>>() {
