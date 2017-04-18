@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.PriorityQueue;
 
 /**
- * The class will recommend a list of movies to a user 
+ * The class will recommend a list of Items to a user
  * @author luona
  *
  */
@@ -15,7 +15,7 @@ public class Recommender {
 	ReadFile rf;
 	
 	/**
-	 * The constructor initializes a movie object
+	 * The constructor initializes a Recommender object
 	 * @param p
 	 * @param rf
 	 */
@@ -26,14 +26,14 @@ public class Recommender {
 	}
 	
 	/**
-	 * The method computes the user's preference for all movies.
+	 * The method computes the user's preference for all Items.
 	 * @param a
-	 * @return a HashMap contains user's preference for all movies
+	 * @return a HashMap contains user's preference for all Items
 	 */
-	public HashMap<Movie, Double> getAllPre(User a) {
-		HashMap<Integer, Movie> allMovies = rf.getAllMovies();
-		HashMap<Movie, Double> predictRating = new HashMap<>();
-		for (Movie m : allMovies.values()) {
+	public HashMap<Item, Double> getAllPre(User a) {
+		HashMap<String, Item> allItems = rf.getAllItems();
+		HashMap<Item, Double> predictRating = new HashMap<>();
+		for (Item m : allItems.values()) {
 			double predictR = p.predict(a, m);
 			predictRating.put(m, predictR);
 		}
@@ -41,15 +41,15 @@ public class Recommender {
 	}
 	
 	/**
-	 * The method recommends a list of movies to a user
+	 * The method recommends a list of Items to a user
 	 * @param u
 	 * @param range
-	 * @return a list of movies
+	 * @return a list of Items
 	 */
-	public ArrayList<Movie> recommend(User u, int range) {
-		HashMap<Movie, Double> allPre = getAllPre(u);
-		PriorityQueue<Map.Entry<Movie, Double>> topRating = new PriorityQueue<>(range, new Comparator<Map.Entry<Movie, Double>>() {
-			public int compare(Map.Entry<Movie, Double> A, Map.Entry<Movie, Double> B) {
+	public ArrayList<Item> recommend(User u, int range) {
+		HashMap<Item, Double> allPre = getAllPre(u);
+		PriorityQueue<Map.Entry<Item, Double>> topRating = new PriorityQueue<>(range, new Comparator<Map.Entry<Item, Double>>() {
+			public int compare(Map.Entry<Item, Double> A, Map.Entry<Item, Double> B) {
 				if (A.getValue() - B.getValue() > 0) {
 					return 1;
 				} else if (A.getValue() - B.getValue() == 0) {
@@ -60,7 +60,7 @@ public class Recommender {
 			}
 		});
 		int count = 0;
-		for (Map.Entry<Movie, Double> m : allPre.entrySet()) {
+		for (Map.Entry<Item, Double> m : allPre.entrySet()) {
 			if (u.getAllRatings().containsKey(m.getKey())) continue;
 			if (count < range) {
 				topRating.add(m);
@@ -72,7 +72,7 @@ public class Recommender {
 				}
 			}
 		}
-		ArrayList<Movie> res = new ArrayList<Movie>();
+		ArrayList<Item> res = new ArrayList<Item>();
 		while (!topRating.isEmpty()) {
 			res.add(topRating.poll().getKey());
 		}

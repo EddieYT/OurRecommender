@@ -17,11 +17,22 @@ public class Main {
 		Scanner in = new Scanner(System.in);
 		System.out.println("Please enter the filename: ");
 		String filename = in.nextLine();
-		ReadFile rf = new ReadFile(filename);
+		ReadFile rf;
+
+		if (filename.equals("ratings.dat")) {
+			rf = new ReadMovie(filename);
+		} else if (filename.equals("BX-Book-Ratings.csv")) {
+			rf = new ReadBook(filename);
+		} else if (filename.equals("ratings.csv")) {
+			rf = new ReadSmallMovie(filename);
+		} else {
+			throw new FileNotFoundException();
+		}
+
 		Neighborhood nb = new Neighborhood(rf);
 		Predictor p = new Predictor(nb);
 		Recommender re = new Recommender(p, rf);
-		
+
 		while (true) {
 
 			System.out.print("Select a question you'd like know(a or b/ q for quit): \n"
@@ -36,11 +47,11 @@ public class Main {
 					System.out.println("Please enter a user id: ");
 					int userID = Integer.parseInt(in.next());
 					System.out.println("Please enter a movie id: ");
-					int movieID = Integer.parseInt(in.next());
+					String movieID = in.next();
 					HashMap<Integer, User> allUsers = rf.getAllUsers();
-					HashMap<Integer, Movie> allMovies = rf.getAllMovies();
+					HashMap<String, Item> allMovies = rf.getAllItems();
 					User u = allUsers.get(userID);
-					Movie m = allMovies.get(movieID);
+					Item m = allMovies.get(movieID);
 					if (m == null) { 
 						System.out.println("The movie doesn't exist");
 						continue;
@@ -59,10 +70,10 @@ public class Main {
 					if (u == null) {
 						System.out.println("This user doesnt exist");
 					}
-					ArrayList<Movie> topMovie = re.recommend(u, range);
+					ArrayList<Item> topMovie = re.recommend(u, range);
 					System.out.println("We recommend these movies for user " + userID);
 					int rank = topMovie.size();
-					for (Movie m: topMovie) {
+					for (Item m: topMovie) {
 						System.out.println("Top " + rank + ": " + m.getID());
 						rank--;
 					}

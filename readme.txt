@@ -6,7 +6,7 @@ Design
 In this project, we've implemented the following classes:
 	1. Movie, implements the Movie object, which records the name and the ID of an Movie. (We can add more attributes for this item if needed in the future, like genre)
 	2. User, implements the User object, which contains the ID of an user and the user's rating for the items.
-	3. ReadFile, reads in a file and stores the user and item data in hashmap.
+	3. ReadMovie, reads in a file and stores the user and item data in hashmap.
 	4. Pearson, caculates the similarity between users according to the user's rating for Items, and this class implements from RelationFormula interface.
 	5. Neighborhood, finds the neighboors for a given user according to a threshold for similarity.
 	6. Predictor, predicts the user's preference for an item.

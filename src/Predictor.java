@@ -25,7 +25,7 @@ public class Predictor {
 	 * @param i
 	 * @return
 	 */
-	public double predict(User u, Movie i) {
+	public double predict(User u, Item i) {
 		ArrayList<User> nbs = n.findNbs(u, i, 20);
 		double value1 = 0;
 		for (User user : nbs) {

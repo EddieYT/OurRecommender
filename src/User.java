@@ -7,7 +7,7 @@ import java.util.HashMap;
 public class User {
 	private int id;
 	private double avg;
-	private HashMap<Movie, Double> ratings;
+	private HashMap<Item, Double> ratings;
 	private HashMap<User, Double> similarity;
 	
 	/**
@@ -17,24 +17,24 @@ public class User {
 	public User (int id) {
 		this.id = id;
 		avg = -1;
-		ratings = new HashMap<Movie, Double>();
+		ratings = new HashMap<Item, Double>();
 		similarity = new HashMap<User, Double>();
 	}
 	
 	/**
 	 * Gets the user's all ratings for certain movies.
-	 * @return a mapping from Movie to rating
+	 * @return a mapping from Item to rating
 	 */
-	public HashMap<Movie, Double> getAllRatings() {
+	public HashMap<Item, Double> getAllRatings() {
 		return this.ratings;
 	}
 	
 	/**
-	 * Sets the rating for a specified movie.
-	 * @param m the movie
-	 * @param rating the rating for the specified movie
+	 * Sets the rating for a specified Item.
+	 * @param m the Item
+	 * @param rating the rating for the specified Item
 	 */
-	public void setRating(Movie m, double rating) {
+	public void setRating(Item m, double rating) {
 		ratings.put(m, rating);
 	}
 	
@@ -48,18 +48,18 @@ public class User {
 	
 	/**
 	 * Gets all ratings from a user.
-	 * @return a HashMap maps movie to rating
+	 * @return a HashMap maps Item to rating
 	 */
-	public HashMap<Movie, Double> getRatings() {
+	public HashMap<Item, Double> getRatings() {
 		return ratings;
 	}
 	
 	/**
-	 * Gets a specified movie's rating from a user
+	 * Gets a specified Item's rating from a user
 	 * @param m
 	 * @return the number of rating
 	 */
-	public double getRating(Movie m) {
+	public double getRating(Item m) {
 		return ratings.get(m);
 	}
 	

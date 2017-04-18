@@ -48,7 +48,7 @@ public class Neighborhood{
 	 * @param threshold
 	 * @return a list of neighbors
 	 */
-	public ArrayList<User> findNbs(User u, Movie movie, int threshold) {
+	public ArrayList<User> findNbs(User u, Item movie, int threshold) {
 		HashMap<User, Double> allS = getAllSimilarity(u);
 		PriorityQueue<Map.Entry<User, Double>> nbs = new PriorityQueue<>(threshold, new Comparator<Map.Entry<User, Double>>() {
 			public int compare(Map.Entry<User, Double> A, Map.Entry<User, Double> B) {

@@ -12,12 +12,12 @@ public class Pearson implements RelationFormula{
 	 * This method counts the similarity between two users.
 	 */
 	public double runSimilarity (User a, User b) {
-		ArrayList<Movie> both = and (a, b);
+		ArrayList<Item> both = and (a, b);
 		double value1 = 0;
 		double value2 = 0;
 		double value3 = 0;
 		int count = 0;
-		for (Movie m : both) {
+		for (Item m : both) {
 			value1 = value1 + ((a.getRating(m) - a.getAverage())*(b.getRating(m) - b.getAverage()));
 			value2 = value2 + (a.getRating(m) - a.getAverage()) * (a.getRating(m) - a.getAverage());
 			value3 = value3 + (b.getRating(m) - b.getAverage()) * (b.getRating(m) - b.getAverage());
@@ -28,16 +28,16 @@ public class Pearson implements RelationFormula{
 	}
 	
 	/**
-	 * This method returns the movies that watched by both User a and User b
+	 * This method returns the Items that watched by both User a and User b
 	 * @param a
 	 * @param b
-	 * @return the list of movies 
+	 * @return the list of Items
 	 */
-	public ArrayList<Movie> and (User a, User b) {
-		ArrayList<Movie> res = new ArrayList<>();
-		HashMap<Movie, Double> ratingA = a.getRatings();
-		HashMap<Movie, Double> ratingB = b.getRatings();
-		for (Movie m : ratingA.keySet()) {
+	public ArrayList<Item> and (User a, User b) {
+		ArrayList<Item> res = new ArrayList<>();
+		HashMap<Item, Double> ratingA = a.getRatings();
+		HashMap<Item, Double> ratingB = b.getRatings();
+		for (Item m : ratingA.keySet()) {
 			if (ratingB.containsKey(m)) {
 				res.add(m);
 			}
