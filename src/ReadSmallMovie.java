@@ -41,6 +41,7 @@ public class ReadSmallMovie implements ReadFile {
                 ds.setItem(m);
             }
             u.setRating(m, rating);
+            m.setUserRatings(u, rating);
             ds.addSum(rating);
         }
     }
@@ -53,6 +54,10 @@ public class ReadSmallMovie implements ReadFile {
     @Override
     public HashMap<String, Item> getAllItems() {
         return ds.getAllItems();
+    }
+    
+    public DataSet getDataSet() {
+    	return ds;
     }
 
 

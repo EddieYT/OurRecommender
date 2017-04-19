@@ -40,6 +40,7 @@ public class ReadMovie implements ReadFile {
 				ds.setItem(m);
 			}
 			u.setRating(m, rating);
+			 m.setUserRatings(u, rating);
 			ds.addSum(rating);
 		}
 	}
@@ -53,6 +54,10 @@ public class ReadMovie implements ReadFile {
 	public HashMap<String, Item> getAllItems() {
 		return ds.getAllItems();
 	}
+	
+    public DataSet getDataSet() {
+    	return ds;
+    }
 
 
 }

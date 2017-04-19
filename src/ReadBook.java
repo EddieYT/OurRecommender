@@ -39,6 +39,7 @@ public class ReadBook implements ReadFile{
                 ds.setItem(m);
             }
             u.setRating(m, rating);
+            m.setUserRatings(u, rating);
             ds.addSum(rating);
         }
     }
@@ -51,5 +52,9 @@ public class ReadBook implements ReadFile{
     @Override
     public HashMap<String, Item> getAllItems() {
         return this.ds.getAllItems();
+    }
+    
+    public DataSet getDataSet() {
+    	return ds;
     }
 }
