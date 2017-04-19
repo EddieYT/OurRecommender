@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.HashMap;
 
 /**
@@ -8,7 +9,7 @@ public interface ReadFile {
     /**
      * Helper function builds up all users and items.
      */
-    public void buildAll();
+    public void buildAll() throws IOException;
 
     /**
      * This methods will return all users.

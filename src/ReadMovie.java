@@ -1,5 +1,4 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Scanner;
 /**
@@ -8,26 +7,24 @@ import java.util.Scanner;
  *
  */
 public class ReadMovie implements ReadFile {
-	private Scanner in;
-	private File f;
+	private BufferedReader in;
 	private DataSet ds;
 	
 	/**
 	 * Constructor 
 	 * @param filename the name of the file to be read
-	 * @throws FileNotFoundException
+	 * @throws IOException
 	 */
-	public ReadMovie(String filename) throws FileNotFoundException {
+	public ReadMovie(String filename) throws IOException {
 	    ds = new DataSet();
-		f = new File(filename);
-		in = new Scanner(f);
+		in = new BufferedReader(new FileReader(filename));
 		buildAll();
 	}
 
 	@Override
-	public void buildAll() {
-		while (in.hasNextLine()) {
-			String line = in.nextLine();
+	public void buildAll() throws IOException {
+		while (in.ready()) {
+			String line = in.readLine();
 			String[] info = line.split("::");
 			int userID = Integer.parseInt(info[0]);
 			String movieID = info[1];

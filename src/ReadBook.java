@@ -1,28 +1,26 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.HashMap;
-import java.util.Scanner;
 
 /**
  * Created by Eddie on 4/17/17.
  */
 public class ReadBook implements ReadFile{
-    private Scanner in;
-    private File f;
+    private BufferedReader in;
     private DataSet ds;
 
-    public ReadBook(String filename) throws FileNotFoundException {
-        f = new File(filename);
-        in = new Scanner(f);
+    public ReadBook(String filename) throws IOException {
+        in = new BufferedReader(new FileReader(filename));
         ds = new DataSet();
         this.buildAll();
     }
 
     @Override
-    public void buildAll() {
-        while (in.hasNextLine()) {
-            String line = in.nextLine();
-            if (!Character.isDigit(line.charAt(0))) continue;
+    public void buildAll() throws IOException {
+        int count = 0;
+        while (in.ready()) {
+            count++;
+            String line = in.readLine();
+            if (!Character.isDigit(line.charAt(1))) continue;
             String[] info = line.split(";");
             for (int i = 0; i < info.length; i++) {
                 info[i] = info[i].replaceAll("\"", "");
@@ -47,11 +45,11 @@ public class ReadBook implements ReadFile{
 
     @Override
     public HashMap<Integer, User> getAllUsers() {
-        return null;
+        return this.ds.getAllUsers();
     }
 
     @Override
     public HashMap<String, Item> getAllItems() {
-        return null;
+        return this.ds.getAllItems();
     }
 }
