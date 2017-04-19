@@ -10,16 +10,31 @@ import java.util.PriorityQueue;
  */
 public class Neighborhood{
 	
-	Pearson p;
+	RelationFormula p;
 	ReadFile rf;
 	
 	/**
 	 * The constructor will initialize a Neighborhood object by taking a ReadFile parameter.
 	 * @param rf
 	 */
-	public Neighborhood(ReadFile rf) {
-		p = new Pearson();
+	public Neighborhood(ReadFile rf, String type) {
 		this.rf = rf;
+		p = nbGenerator(type);
+	}
+	
+	/**
+	 * 
+	 * @param type
+	 * @return
+	 */
+	public RelationFormula nbGenerator(String type) {
+		RelationFormula r = null;
+		if (type.equals("Pearson")) {
+			r = new Pearson();
+		} else if (type.equals("CosineSimilarity")) {
+			r = new CosineSimilarity();
+		}
+		return r;
 	}
 	
 	/**

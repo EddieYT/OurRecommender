@@ -18,8 +18,19 @@ public class Main {
 		Scanner in = new Scanner(System.in);
 		System.out.println("Please enter the filename: ");
 		String filename = in.nextLine();
+		
+		System.out.println("Which predictor do you want to use, please input CFPredictor or BaselinePredictor?");
+		String predictor = in.next();
+		String similarity = null;
+		if (predictor.equals("CFPredictor")) {
+			System.out.println("Please choose the way to count similarity, input Pearson or CosineSimilarity:");
+			similarity = in.next();
+		}
+		
+		
+		
 		ReadFile rf;
-
+		
 		if (filename.equals("ratings.dat")) {
 			rf = new ReadMovie(filename);
 		} else if (filename.equals("BX-Book-Ratings.csv")) {
@@ -29,9 +40,16 @@ public class Main {
 		} else {
 			throw new FileNotFoundException();
 		}
-
-		Neighborhood nb = new Neighborhood(rf);
-		Predictor p = new Predictor(nb);
+		
+		
+		Predictor p = null;
+		if (predictor.equals("CFPredictor")) {
+			Neighborhood nb = new Neighborhood(rf, similarity);
+			p = new CFPredictor(nb);
+		} else if (predictor.equals("BaselinePredictor")) {
+			DataSet ds = rf.getDataSet();
+			p = new BaselinePredictor(ds);
+		}
 		Recommender re = new Recommender(p, rf);
 
 		while (true) {
@@ -44,7 +62,7 @@ public class Main {
 				System.out.print("Exit Recommender.");
 				break;
 			} else if (choice.equals("a")) {
-				try {
+				//try {
 					HashMap<Integer, User> allUsers = rf.getAllUsers();
 					HashMap<String, Item> allItems = rf.getAllItems();
 					System.out.println("Please enter a user id: ");
@@ -61,11 +79,13 @@ public class Main {
 						System.out.println("Item doesn't exist!!");
 						continue;
 					}
+					
 					System.out.println(p.predict(u, m));
-				}
-				catch (Exception e) {
-					System.out.println("Please input a number!");
-				}
+					
+				//}
+				//catch (Exception e) {
+					//System.out.println("Please input a number!");
+				//}
 			} else if (choice.equals("b")) {
 				try {
 					System.out.println("Please enter a user id: ");

@@ -22,7 +22,7 @@ public class CosineSimilarity implements RelationFormula{
 		for (double rating : ratingA.values()) {
 			value2 = value2 + rating*rating;
 		}
-		for (double rating : ratingA.values()) {
+		for (double rating : ratingB.values()) {
 			value3 = value3 + rating*rating;
 		}
 		double res = value1/(Math.sqrt(value2)*Math.sqrt(value3));

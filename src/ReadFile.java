@@ -23,4 +23,6 @@ public interface ReadFile {
      * @return a HashMap that stores all items.
      */
     public HashMap<String, Item> getAllItems();
+    
+    public DataSet getDataSet();
 }

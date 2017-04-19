@@ -15,6 +15,7 @@ public class Item {
 	 */
 	public Item (String id) {
 		this.id = id;
+		userRatings = new HashMap<>();
 	}
 	
 	/**
