@@ -33,7 +33,7 @@ In this project, we've implemented an interface:
 
 
 ---
-** Program Instruction **
+### Program Instructions ###
 * User can go to Main.java, and execute the main method. 
 * You will be asked to input a file name.
 * Then you can choose the way to predict and the way to count similarity.
